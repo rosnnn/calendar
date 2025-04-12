@@ -5,6 +5,9 @@ import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import eventRoutes from "./routes/events.js";
 import dataRoutes from "./routes/data.js";
+import goalRoutes from "./routes/goals.js";
+
+
 
 dotenv.config();
 const app = express();
@@ -14,6 +17,8 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use("/api/events", eventRoutes);
 app.use("/api/data", dataRoutes);
+app.use("/api/goals", goalRoutes);
+
 
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
