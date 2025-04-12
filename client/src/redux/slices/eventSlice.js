@@ -12,7 +12,12 @@ const pastelColors = [
 const getRandomPastelColor = () =>
   pastelColors[Math.floor(Math.random() * pastelColors.length)];
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+const API_URL =
+  (typeof import.meta !== 'undefined' &&
+    import.meta.env &&
+    import.meta.env.VITE_API_URL) ||
+  'http://localhost:5000';
+
 
 // 🟡 Assign color if missing
 export const fetchEvents = createAsyncThunk('events/fetch', async () => {
