@@ -45,7 +45,7 @@ const Sidebar = () => {
   };
 
   const handleDeleteGoal = async (goalId) => {
-    await axios.delete(`/api/data/goals/${goalId}`);
+    await axios.delete(`https://calendar-server-kuvx.onrender.com/api/data/goals/${goalId}`);
     dispatch(fetchGoals());
     dispatch(clearTasksByGoal(goalId));
     if (selectedGoal === goalId) setSelectedGoal(null);

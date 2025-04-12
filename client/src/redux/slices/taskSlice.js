@@ -1,6 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+axios.defaults.baseURL = "https://calendar-server-kuvx.onrender.com";
+
 // Async actions
 export const fetchTasks = createAsyncThunk("tasks/fetch", async (goalId) => {
   const res = await axios.get(`/api/data/tasks/${goalId}`);

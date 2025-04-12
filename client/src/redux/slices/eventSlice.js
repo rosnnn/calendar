@@ -12,9 +12,11 @@ const pastelColors = [
 const getRandomPastelColor = () =>
   pastelColors[Math.floor(Math.random() * pastelColors.length)];
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
 // 🟡 Assign color if missing
 export const fetchEvents = createAsyncThunk('events/fetch', async () => {
-  const res = await axios.get('http://localhost:5000/api/events');
+  const res = await axios.get(`${API_URL}/api/events`);
   return res.data.map((event) => ({
     ...event,
     color: event.color || getRandomPastelColor(),
@@ -22,23 +24,22 @@ export const fetchEvents = createAsyncThunk('events/fetch', async () => {
 });
 
 export const createEvent = createAsyncThunk('events/create', async (eventData) => {
-    const dataWithColor = {
-      ...eventData,
-      color: eventData.color || getRandomPastelColor(), // fallback if color not set
-    };
-  
-    const res = await axios.post('http://localhost:5000/api/events', dataWithColor);
-    return res.data;
+  const dataWithColor = {
+    ...eventData,
+    color: eventData.color || getRandomPastelColor(),
+  };
+
+  const res = await axios.post(`${API_URL}/api/events`, dataWithColor);
+  return res.data;
 });
-  
 
 export const updateEvent = createAsyncThunk('events/update', async ({ id, updates }) => {
-  const res = await axios.put(`http://localhost:5000/api/events/${id}`, updates);
+  const res = await axios.put(`${API_URL}/api/events/${id}`, updates);
   return res.data;
 });
 
 export const deleteEvent = createAsyncThunk('events/delete', async (id) => {
-  await axios.delete(`http://localhost:5000/api/events/${id}`);
+  await axios.delete(`${API_URL}/api/events/${id}`);
   return id;
 });
 
