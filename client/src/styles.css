@@ -43,6 +43,16 @@ body {
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
   }
   
+  .rbc-current-time-indicator {
+    position: absolute;
+    z-index: 3;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: transparent;
+    pointer-events: none;
+  }
+
   /* Optional: remove heavy lines completely */
   .rbc-time-content,
   .rbc-time-header {
